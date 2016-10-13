@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="form-validation">
+  <head>
+    <title>Angular Form Validation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container" ng-controller="form-validation as submit">
+
+      <h1>Angular Form Validation</h1>
+
+      <form novalidate ng-submit="submit.submit(user)" name="form">
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" placeholder="Username" ng-model="user.username" ng-minlength=3 ng-minlength=10 name="username" required ng-class="{ 'valid' : form.username.$valid, 'invalid' : form.username.$invalid && form.username.$dirty }">
+        </div>
+
+        <p ng-show="form.username.$invalid && form.username.$dirty">Invalid Username</p>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Email" ng-model="user.email" required name="email" ng-class="{ 'valid' : form.email.$valid, 'invalid' : form.email.$invalid && form.email.$dirty }">
+        </div>
+
+        <p ng-show="form.email.$invalid && form.email.$dirty">Invalid Email</p>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Password" ng-model="user.password" ng-minlength=8 name="password" required ng-class="{ 'valid' : form.password.$valid, 'invalid' : form.password.$invalid && form.password.$dirty }">
+        </div>
+
+        <p ng-show="form.password.$invalid && form.password.$dirty">Invalid Password</p>
+
+        <div class="form-group">
+          <label for="zip">Zip</label>
+          <input type="number" class="form-control" id="zip" placeholder="Zip" ng-model="user.zip" required name="zip" ng-class="{ 'valid' : form.zip.$valid, 'invalid' : form.zip.$invalid && form.zip.$dirty }">
+        </div>
+
+        <p ng-show="form.zip.$invalid && form.zip.$dirty">Invalid Zip</p>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <h3 ng-show="submit.user">{{ submit }}</h3>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.10/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="controllers.js"></script>
+  </body>
+</html>
